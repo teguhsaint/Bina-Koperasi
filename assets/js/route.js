@@ -1,5 +1,6 @@
-// Setiap Link Pindah Halaman Wajib Menggunakan ID linkpage dan Attribute data-halaman
-// Contoh : <a href="javascript:void(0)" data-halaman="contoh : home.html" id="linkpage"></a>
+
+//Setiap Link Pindah Halaman Wajib Menggunakan ID linkpage dan Attribute data-halaman
+// Contoh : <a href="javascript:void(0)" data-halaman="home.html" id="linkpage"></a>
 
 $(document).ready(function () {
   var url_folder_api = "http://localhost/folder/api";
