@@ -1,0 +1,7 @@
+Setiap Plugin Seperti
+- Datatable
+- FontAwesome
+- SweetAlert
+- Dll 
+
+Harap di taruh di folder Lib ( disini )
