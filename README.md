@@ -4,13 +4,15 @@
 Projek Aplikasi Koperasi, dari Komunitas :
 ### Bina Teknologi Nusantara
 
+## Anggota Projek Bina Koperasi
 
-- Jeki - BackEnd
-- Husnun FrontEnd
-- Naufal BackEnd
-- Yahya FrontEnd
-- Ajiz BackEnd
-- Tajul Arifin FrontEnd
-- Septian FrontEnd
-- Teguh Santoso BackEnd
+| No | Nama | Posisi |
+|----|--------------|--------|
+|   1 | Jeki         | BackEnd |
+|   2 | Husnun       |    FrontEnd    |
+|   3 |    Naufal          |  BackEnd      |
+|   4 |     Yahya         |  FrontEnd      |
+|  5  | Ajiz            |  BackEnd      |
+|  5  | Tajul            | FrontEnd       |
+|  5  | Septian            | FrontEnd       |
 
