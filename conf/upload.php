@@ -1,41 +1,45 @@
 <?php
+$respon = [];
+
 if ($_POST) {
     if ($_FILES['file']['error'] === UPLOAD_ERR_OK) {
-        $validate = ['jpg','png'];
+        $validate = ['jpg', 'png'];
         $nama = explode('.', $_FILES['file']['name']);
         if (in_array(end($nama), $validate)) {
-        
-            $namaAcak = md5(uniqid(mt_rand(), true)).'.'.end($nama);
+            if ($_FILES['file']['size'] < 10 * 1024 * 1024) {
+                $namaAcak = md5(uniqid(mt_rand(), true)) . '.' . end($nama);
 
-            $tempFile = $_FILES['file']['tmp_name'];
-            $targetPath = 'uploads/';
-            move_uploaded_file($tempFile, $namaAcak);
-            $kode =  $_POST['agt_kode'];
-            $nama = $_POST['agt_nama'];
-            $nik =  $_POST['agt_nik'];
-            $alamat =$_POST['agt_alamat'];
-            $hp =   $_POST['agt_nohp'];
-            $ktp    = $namaAcak;
+                require_once 'connect.php';
+                $tempFile = $_FILES['file']['tmp_name'];
+                $targetPath = '../uploads/';
+                move_uploaded_file($tempFile, $targetPath . $namaAcak);
+
+                $kode = $db->real_escape_string(htmlspecialchars($_POST['agt_kode']));
+                $nama = $db->real_escape_string(htmlspecialchars($_POST['agt_nama']));
+                $nik = $db->real_escape_string(htmlspecialchars($_POST['agt_nik']));
+                $alamat = $db->real_escape_string(htmlspecialchars($_POST['agt_alamat']));
+                $hp = $db->real_escape_string(htmlspecialchars($_POST['agt_nohp']));
+                $ktp = $db->real_escape_string(htmlspecialchars($namaAcak));
+
+                $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp')";
+                $result = $db->query($sql);
+                if ($result) {
+                    $respon['respon'] = 'data berhasil tersimpan';
+                } else {
+                    $respon['respon'] = 'gagal menyimpan data';
+                }
+            } else {
+                $respon['respon'] = 'ukuran maksimal 5 mb';
+            }
         } else {
-            http_response_code(400);
-            //bad request
+            $respon['respon'] = 'extensi file tidak sesuai';
         }
-        require_once 'connect.php';
-         
-        $sql = "INSERT INTO nasabah VALUES('','$kode','$nama','$nik','$alamat','$hp','$ktp')";
-        $result=$db->query($sql);
-        if ($result) {
-            echo json_encode('data tersimpan');
-        } else {
-            http_response_code(500);
-            //internal server error
-        }
-        
     } else {
-        http_response_code(500);
-        //internal server error
+        $respon['respon'] = 'upload gagal';
     }
 } else {
-    http_response_code(405);
-    //methode not allowed
+    $respon['respon'] = 'method tidak sesuai';
 }
+
+header("Content-Type: application/json; charset=UTF-8");
+echo json_encode($respon);
