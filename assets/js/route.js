@@ -1,8 +1,9 @@
 //Setiap Link Pindah Halaman Wajib Menggunakan ID linkpage dan Attribute data-halaman
 // Contoh : <a href="javascript:void(0)" data-halaman="home.html" class="linkpage"></a>
 
+var url_folder_api =
+  "http://localhost/bina-Koperasi/Bina-Koperasi/conf/upload.php";
 $(document).ready(function () {
-  var url_folder_api = "http://localhost/folder/api";
   var halama_utama = "home.html";
 
   var halaman_saatini = "";
