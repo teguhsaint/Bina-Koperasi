@@ -63,11 +63,11 @@
     data.append("file", file);
     // console.log(data);
     $.ajax({
-      url: url_folder_api, // Ganti dengan URL tempat Anda menangani unggahan file
+      url: url_folder_api,
       type: "POST",
       data: data,
       contentType: JSON,
-      contentType: false, // Biarkan jQuery menentukan ContentType-nya untuk FormData
+      contentType: false,
       processData: false,
       success: function (response) {
         console.log("Berhasil: " + response);
