@@ -1,4 +1,3 @@
-
 //Setiap Link Pindah Halaman Wajib Menggunakan ID linkpage dan Attribute data-halaman
 // Contoh : <a href="javascript:void(0)" data-halaman="home.html" id="linkpage"></a>
 
