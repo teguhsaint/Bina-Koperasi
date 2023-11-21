@@ -1,5 +1,5 @@
 //Setiap Link Pindah Halaman Wajib Menggunakan ID linkpage dan Attribute data-halaman
-// Contoh : <a href="javascript:void(0)" data-halaman="home.html" id="linkpage"></a>
+// Contoh : <a href="javascript:void(0)" data-halaman="home.html" class="linkpage"></a>
 
 $(document).ready(function () {
   var url_folder_api = "http://localhost/folder/api";
@@ -17,16 +17,14 @@ $(document).ready(function () {
     localStorage.setItem("halaman_tersimpan", halaman_saatini);
     load_halaman(halaman_saatini);
   }
-
-  $("#linkpage").on("click", function () {
+  $(".linkpage").on("click", function () {
     halaman_saatini = $(this).attr("data-halaman");
     localStorage.setItem("halaman_tersimpan", halaman_saatini);
     load_halaman(halaman_saatini);
   });
-
   function load_halaman(halaman_apa) {
     $(selector_loadHalaman).hide();
     $(selector_loadHalaman).load(dir_halaman + halaman_apa);
-    $(selector_loadHalaman).fadeIn(1000);
+    $(selector_loadHalaman).fadeIn(300);
   }
 });
