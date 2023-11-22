@@ -23,11 +23,10 @@ if ($_POST) {
                 $hp = $db->real_escape_string(htmlspecialchars($_POST['agt_nohp']));
                 $ktp = $db->real_escape_string(htmlspecialchars($namaAcak));
                 $tglmasuks = $db->real_escape_string(htmlspecialchars($tglmasuk));
-                
-                $sql = "INSERT INTO nasabah (kode, nama, nik, alamat, hp, ktp, tglmasuk) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                $stmt = $db->prepare($sql);
-                $stmt->bind_param("sssssss", $kode, $nama, $nik, $alamat, $hp, $ktp, $tglmasuks);
-                $result = $stmt->execute();
+
+
+                $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
+                $result = $db->query($sql);
                 if ($result) {
                     $respon['respon'] = 'data berhasil tersimpan';
                 } else {
