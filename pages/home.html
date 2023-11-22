@@ -1,0 +1,57 @@
+<div class="row mt-5">
+  <div class="col-sm-6">
+    <div class="card shadow">
+      <div class="card-body">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: "bar",
+    responsive: true,
+    data: {
+      labels: [],
+      datasets: [
+        {
+          label: "Nasabah Baru",
+          data: [],
+          backgroundColor: "rgba(45, 0, 255, 0.2)",
+          borderColor: "rgba(100, 0, 255, 1)",
+          fill: true,
+          borderWidth: 3,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yScale: {
+          position: "right",
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  function ambil_statis() {
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "api/model.php",
+      data: {
+        pr: "statistik_nasabah_masuk",
+      },
+      dataType: "JSON",
+      success: function (response) {
+        $.each(response, function (ins, vas) {
+          myChart.data.labels.push(vas["tgl"]);
+          myChart.data.datasets[0].data.push(vas["jumlah"].replaceAll('"', ""));
+          myChart.update();
+        });
+      },
+    });
+  }
+  ambil_statis();
+</script>

@@ -91,6 +91,17 @@ if (!empty($_POST['pr'])) {
 
             break;
 
+        case 'statistik_nasabah_masuk':
+            $hasil = select_data_custom('SELECT COUNT(agt_id) as jumlah_masuk, agt_tglmasuk as tgl FROM nasabah GROUP BY agt_tglmasuk;');
+            $aokod = [];
+            while ($a = mysqli_fetch_assoc($hasil)) {
+                array_push($aokod, array('tgl' => $a['tgl'], 'jumlah' => $a['jumlah_masuk']));
+            }
+
+            echo json_encode($aokod);
+
+            break;
+
         default:
             # code...
             break;
