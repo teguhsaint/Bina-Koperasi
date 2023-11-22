@@ -1,6 +1,6 @@
 <?php
-header("Content-Type: application/json");
-header('Access-Control-Allow-Origin: *');
+header("Content-Type: application/json; charset=UTF-8");
+date_default_timezone_set('Asia/Jakarta');
 $respon = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,26 +26,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $namaAcak = md5(uniqid(mt_rand(), true)) . '.' . $file_extension;
 
                         require_once 'connect.php';
+                        require_once '../conf/validasi.php';
+                        $coba = new Test();
+                        $coba->form(
+                            $db,
+                            $_POST['agt_kode'],
+                            $_POST['agt_nama'],
+                            $_POST['agt_nik'],
+                            $_POST['agt_alamat'],
+                            $_POST['agt_nohp']
+                        );
                         
-                        $tempFile = $_FILES['file']['tmp_name'];
-                        $targetPath = '../uploads/';
-                        move_uploaded_file($tempFile, $targetPath . $namaAcak);
-                        $kode = $db->real_escape_string(htmlspecialchars($_POST['agt_kode']));
-                        $nama = $db->real_escape_string(htmlspecialchars($_POST['agt_nama']));
-                        $nik = $db->real_escape_string(htmlspecialchars($_POST['agt_nik']));
-                        $alamat = $db->real_escape_string(htmlspecialchars($_POST['agt_alamat']));
-                        $hp = $db->real_escape_string(htmlspecialchars($_POST['agt_nohp']));
-                        $ktp = $db->real_escape_string(htmlspecialchars($namaAcak));
-                        $tglmasuks = $db->real_escape_string(htmlspecialchars(date('Y-m-d')));
+                        $hasil= $coba->get();
+                        if (empty($hasil['msg'])) {
+                            
+                            $tempFile = $_FILES['file']['tmp_name'];
+                            $targetPath = '../uploads/';
+                            move_uploaded_file($tempFile, $targetPath . $namaAcak);
+                            $kode = $hasil['kode'];
+                        
+                            $nama = $hasil['nama'];
+                            $nik = $hasil['nik'];
+                            $alamat = $hasil['alamat'];
+                            $hp = $hasil['hp'];
+                            $ktp = $db->real_escape_string(htmlspecialchars($namaAcak));
+                            $tglmasuks = $db->real_escape_string(htmlspecialchars(date("Y-m-d")));
 
-                        $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
-                        $result = $db->query($sql);
-                        if ($result) {
-                            $respon['respon'] = 'data berhasil tersimpan';
+                            $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
+                            $result = $db->query($sql);
+                            if ($result) {
+                                $respon['respon'] = 'data berhasil tersimpan';
+                            } else {
+                                $respon['respon'] = 'gagal menyimpan data';
+                            }
                         } else {
-                            $respon['respon'] = 'gagal menyimpan data';
+                            $respon['respon'] = $hasil['msg'];
                         }
-                        
                     } else {
                         $respon['respon'] = 'ukuran maksimal 5 mb';
                     }
