@@ -2,15 +2,13 @@
 <form action="" id="form-anggota">
   <div class="mb-3">
     <label class="form-label">Pilih AO</label>
-
-    <select class="form-control" name="ao_kode">
-      <option value="AO001">Alice Johnson</option>
-      <option value="AO002">Bob Anderson</option>
+    <select class="form-control" onchange="ambil_kode_akhir(this)" name="ao_kode" id="ao_kode">
+      <option selected disabled>Pilih AO</option>
     </select>
   </div>
   <div class="mb-3">
     <label class="form-label">Kode Anggota Baru</label>
-    <input type="text" name="agt_kode" placeholder="Kode Anggota" class="form-control" required />
+    <input type="text" name="agt_kode" id="agt_kode" placeholder="Kode Anggota" class="form-control" required />
   </div>
   <div class="mb-3">
     <label class="form-label">Nama Lengkap</label>
@@ -65,4 +63,43 @@
       },
     });
   });
+</script>
+
+<script>
+  function ambil_ao(elm) {
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "api/model.php",
+      data: {
+        pr: "ambil_ao",
+      },
+      dataType: "JSON",
+      success: function (response) {
+        $.each(response, function (ins, vas) {
+          $("#ao_kode").append(`
+           <option value='${vas.kode}'>${vas.kode} - ${vas.nama}</option>
+           `);
+        });
+      },
+    });
+  }
+  ambil_ao();
+
+  function ambil_kode_akhir(elm) {
+    var kode = $(elm).val();
+
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "api/model.php",
+      data: {
+        pr: "ambil_kodeterakhir",
+        kode_ao: kode,
+      },
+      dataType: "JSON",
+      success: function (response) {
+        console.log(response);
+        $("#agt_kode").val(response);
+      },
+    });
+  }
 </script>
