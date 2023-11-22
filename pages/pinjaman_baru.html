@@ -1,0 +1,61 @@
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">Pilih Nasabah</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Kode</th>
+                <th scope="col">Nama</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr onclick="ambil_nasabah('AO01_1','Suwarti')">
+                <td>1</td>
+                <td>AO01_1</td>
+                <td>Suwarti</td>
+              </tr>
+              <tr onclick="ambil_nasabah('AO01_2','Aminah')">
+                <td>2</td>
+                <td>AO01_2</td>
+                <td>Aminah</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mb-3 mt-5">
+  <label for="" class="form-label">Kode Anggota</label>
+  <input type="text" name="agt_kode" id="agt_kode" class="form-control" />
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Nama Anggota</label>
+  <input type="text" name="agt_nama" placeholder="Pilih Anggota" id="agt_nama" class="form-control" />
+</div>
+
+<script>
+  $("#agt_nama").click(function () {
+    $("#modalId").modal("show");
+  });
+
+  function ambil_nasabah(agt_kode, nama_agt) {
+    $("#modalId").modal("hide");
+
+    $("#agt_nama").val(nama_agt);
+    $("#agt_kode").val(agt_kode);
+  }
+</script>
