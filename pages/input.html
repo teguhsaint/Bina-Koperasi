@@ -1,7 +1,7 @@
 <!-- atribut name di form dan id jangan diganti  -->
 <div class="card mt-4">
   <div class="card-body">
-    <form action="" id="form-anggota">
+    <form method="post" id="formanggota">
       <div class="row">
         <div class="col-sm-6">
           <div class="mb-3">
@@ -21,25 +21,25 @@
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">NIK</label>
-            <input type="number" name="agt_nik" placeholder="Nomor Induk Kependudukan (16 digit)" class="form-control" required />
+            <input type="number" data-fake="nik" name="agt_nik" placeholder="Nomor Induk Kependudukan (16 digit)" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">Nama Lengkap</label>
-            <input type="text" name="agt_nama" placeholder="" class="form-control" required />
+            <input type="text" data-fake="name" name="agt_nama" placeholder="" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-12">
           <div class="mb-3">
             <label class="form-label">Alamat</label>
-            <textarea type="text" name="agt_alamat" placeholder="" class="form-control" required></textarea>
+            <textarea type="text" data-fake="address" name="agt_alamat" placeholder="" class="form-control" required></textarea>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">No Hp</label>
-            <input type="number" name="agt_nohp" placeholder="hp" class="form-control" required />
+            <input type="text" data-fake="phoneNumber"  name="agt_nohp" placeholder="6281xxxxxxxxx" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-6">
@@ -53,14 +53,42 @@
 
       <!-- <button id="uploadButton" type="button">Unggah</button> -->
       <div id="status"></div>
-      <div class="mb-3">
-        <button class="btn btn-primary" type="submit">Submit</button>
+      <div class="my-3">
+        <button class="float-end btn btn-primary" type="submit">Simpan</button>
       </div>
     </form>
   </div>
 </div>
+
 <script>
-  $("#form-anggota").submit(function (e) {
+  function data_fake(elemen_induk) {
+    $(elemen_induk + " input").each(function (index, element) {
+      request_data($(element).attr("data-fake"), $(element));
+    });
+    $(elemen_induk + " textarea").each(function (index, element) {
+      request_data($(element).attr("data-fake"), $(element));
+    });
+    function request_data(data_fake, elemen) {
+      $.ajax({
+        type: "post",
+        url: "https://binateknologi.com/tool/fake/fake_data.php",
+        data: {
+          data: data_fake,
+        },
+        dataType: "json",
+        success: function (response) {
+          // Gunakan ID untuk merujuk ke elemen input yang benar
+          $(elemen).val(response);
+        },
+      });
+    }
+  }
+  data_fake("#formanggota");
+</script>
+
+<script>
+  $("#formanggota").submit(function (e) {
+    //prevent default
     e.preventDefault();
 
     var data = new FormData(this);
