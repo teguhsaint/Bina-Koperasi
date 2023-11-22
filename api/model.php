@@ -102,6 +102,20 @@ if (!empty($_POST['pr'])) {
 
             break;
 
+        case 'statistik_nasabah_perresort':
+
+            $hasil1  =  select_data('ao');
+            $hsa = [];
+            while ($data = mysqli_fetch_assoc($hasil1)) {
+                $hasil2 = select_data_custom('SELECT COUNT(agt_id) as jaresort FROM nasabah WHERE agt_kode LIKE "%' . $data['kode_ao'] . '%";');
+
+                while ($a = mysqli_fetch_assoc($hasil2)) {
+                    array_push($hsa, array($data['kode_ao'] => $a['jaresort']));
+                }
+            }
+            echo json_encode($hsa);
+
+            break;
         default:
             # code...
             break;

@@ -1,8 +1,15 @@
 <div class="row mt-5">
   <div class="col-sm-6">
-    <div class="card shadow">
+    <div class="card">
       <div class="card-body">
         <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <canvas id="myChart2"></canvas>
       </div>
     </div>
   </div>
@@ -27,10 +34,18 @@
       ],
     },
     options: {
-      scales: {
-        yScale: {
-          position: "right",
-          beginAtZero: true,
+      options: {
+        scales: {
+          x: {
+            border: {
+              display: false,
+            },
+          },
+          y: {
+            border: {
+              display: false,
+            },
+          },
         },
       },
     },
@@ -53,5 +68,62 @@
       },
     });
   }
+
+  var ctx2 = document.getElementById("myChart2").getContext("2d");
+  var myChart2 = new Chart(ctx2, {
+    type: "bar",
+    responsive: true,
+    data: {
+      labels: [],
+      datasets: [
+        {
+          label: 'Nasabah Per Resort',
+          data: [],
+
+          backgroundColor: ["rgba(225, 0, 0, 0.2)", "rgba(0, 0, 255, 0.2)"],
+          borderColor: ["rgba(225, 0, 0, 1)", "rgba(0, 0, 255, 1"],
+          fill: true,
+          borderWidth: 3,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          border: {
+            display: false,
+          },
+        },
+        y: {
+          border: {
+            display: false,
+          },
+        },
+      },
+    },
+  });
+
+  function get_nasabahperresort() {
+    var no = 0;
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "api/model.php",
+      data: {
+        pr: "statistik_nasabah_perresort",
+      },
+      dataType: "JSON",
+      success: function (response) {
+        for (let index = 0; index < response.length; index++) {
+          no++;
+          console.log(response[index]["AO0" + no]);
+          myChart2.data.labels.push(["AO0" + no]);
+
+          myChart2.data.datasets[0].data.push(response[index]["AO0" + no].replaceAll('"', ""));
+          myChart2.update();
+        }
+      },
+    });
+  }
+  get_nasabahperresort();
   ambil_statis();
 </script>
