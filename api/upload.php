@@ -1,5 +1,6 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json");
+header('Access-Control-Allow-Origin: *');
 $respon = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
