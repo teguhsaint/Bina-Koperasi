@@ -9,6 +9,8 @@ if ($_POST) {
             if ($_FILES['file']['size'] < 10 * 1024 * 1024) {
                 $namaAcak = md5(uniqid(mt_rand(), true)) . '.' . end($nama);
 
+                $tglmasuk = date('Y-m-d');
+
                 require_once 'connect.php';
                 $tempFile = $_FILES['file']['tmp_name'];
                 $targetPath = '../uploads/';
@@ -20,8 +22,9 @@ if ($_POST) {
                 $alamat = $db->real_escape_string(htmlspecialchars($_POST['agt_alamat']));
                 $hp = $db->real_escape_string(htmlspecialchars($_POST['agt_nohp']));
                 $ktp = $db->real_escape_string(htmlspecialchars($namaAcak));
+                $tglmasuks = $db->real_escape_string(htmlspecialchars($tglmasuk));
 
-                $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp')";
+                $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
                 $result = $db->query($sql);
                 if ($result) {
                     $respon['respon'] = 'data berhasil tersimpan';

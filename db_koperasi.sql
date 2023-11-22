@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2023 at 02:45 AM
+-- Generation Time: Nov 22, 2023 at 02:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -71,8 +71,16 @@ CREATE TABLE `nasabah` (
   `agt_nik` varchar(20) DEFAULT NULL,
   `agt_alamat` varchar(255) DEFAULT NULL,
   `agt_nohp` varchar(15) DEFAULT NULL,
-  `agt_ktp` varchar(50) DEFAULT NULL
+  `agt_ktp` varchar(50) DEFAULT NULL,
+  `agt_tglmasuk` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nasabah`
+--
+
+INSERT INTO `nasabah` (`agt_id`, `agt_kode`, `agt_nama`, `agt_nik`, `agt_alamat`, `agt_nohp`, `agt_ktp`, `agt_tglmasuk`) VALUES
+(15, 'AO01_1', 'Iriana Nurul Hartati', '1971386012076343', 'Gg. Padang No. 511, Pagar Alam 47048, BaBel', '(+62) 20 1509 8', '4ee05b5d91e0a44e3cbc61eb57c48e5f.png', '2023-11-22');
 
 -- --------------------------------------------------------
 
@@ -157,7 +165,7 @@ ALTER TABLE `ao`
 -- AUTO_INCREMENT for table `nasabah`
 --
 ALTER TABLE `nasabah`
-  MODIFY `agt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `agt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pinjaman`
