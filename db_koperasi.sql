@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 06:17 PM
+-- Generation Time: Nov 22, 2023 at 02:45 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,8 +54,9 @@ CREATE TABLE `ao` (
 --
 
 INSERT INTO `ao` (`id`, `kode_ao`, `nama_ao`, `alamat`, `no_hp`) VALUES
-(1, 'AO001', 'Alice Johnson', 'Jalan AO No. 1', '081111111111'),
-(2, 'AO002', 'Bob Anderson', 'Jalan AO No. 2', '082222222222');
+(1, 'AO01', 'Andriansyah', 'Jalan AO No. 1', '081111111111'),
+(2, 'AO02', 'Solikin', 'Jalan AO No. 2', '082222222222'),
+(3, 'AO03', 'Umar', 'Jalan AO No. 2', '082222222222');
 
 -- --------------------------------------------------------
 
@@ -72,14 +73,6 @@ CREATE TABLE `nasabah` (
   `agt_nohp` varchar(15) DEFAULT NULL,
   `agt_ktp` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `nasabah`
---
-
-INSERT INTO `nasabah` (`agt_id`, `agt_kode`, `agt_nama`, `agt_nik`, `agt_alamat`, `agt_nohp`, `agt_ktp`) VALUES
-(1, 'AO001', 'John Doe', '1234567890', 'Jalan Contoh No. 123', '081234567890', 'KTP1234567890'),
-(2, 'AO002', 'Jane Smith', '0987654321', 'Jalan Percobaan No. 456', '085678901234', 'KTP0987654321');
 
 -- --------------------------------------------------------
 
@@ -158,13 +151,13 @@ ALTER TABLE `angsuran`
 -- AUTO_INCREMENT for table `ao`
 --
 ALTER TABLE `ao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `nasabah`
 --
 ALTER TABLE `nasabah`
-  MODIFY `agt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `agt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pinjaman`
