@@ -72,7 +72,9 @@ if (!empty($_POST['pr'])) {
             }
 
             if ($kode_terakhir !== '') {
-                echo json_encode($kd . '_' . explode("_", $kode_terakhir)[1] + 1);
+                $exp = explode("_", $kode_terakhir);
+                $kode_merge = $kd . '_' . (($exp[1]) + 1);
+                echo json_encode($kode_merge);
             } else {
                 $kode_terakhir = $kd . '_' . 1;
                 echo json_encode($kode_terakhir);
