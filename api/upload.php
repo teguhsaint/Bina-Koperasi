@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
                             $result = $db->query($sql);
-                            if ($result) {
+                            if (mysqli_affected_rows($db)) {
                                 $respon['respon'] = 'data berhasil tersimpan';
                             } else {
                                 $respon['respon'] = 'gagal menyimpan data';

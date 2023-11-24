@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+        <th>#</th>
+        <th>Nama</th>
+        <th>Kode</th>
+    </thead>
+
+    <tbody id="nasabah">
+        
+    </tbody>
+</table>
+
+
+<script>
+    $.ajax({
+        type: "get",
+        url: url_folder_api+'/api/baca_agt.php',
+        dataType: "HTML",
+        success: function (response) {
+
+            $('#nasabah').html(response)
+             $('table').dataTable()
+        }
+        
+    });
+</script>

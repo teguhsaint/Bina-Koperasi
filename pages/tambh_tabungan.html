@@ -1,0 +1,81 @@
+<h3>Tambah Tabungan</h3>
+
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">Pilih Tabungan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalbd"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mb-3 mt-5">
+  <label for="" class="form-label">Kode Anggota</label>
+  <input type="text" disabled name="agt_kode" id="agt_kode" class="form-control" />
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">Nama Anggota</label>
+  <input type="text" name="agt_nama" placeholder="Pilih Anggota" id="agt_nama" class="form-control" autocomplete="off" />
+</div>
+
+<div class="mb-3 mt-5">
+  <label for="" class="form-label">Tanggal</label>
+  <input type="date" name="tanggal" id="tanggal" class="form-control" />
+</div>
+
+<div class="mb-3 mt-5">
+  <label for="" class="form-label">Jumlah</label>
+  <input type="text" name="jumlah" id="jumlah" class="form-control" data-type="currency" />
+</div>
+
+
+<button id="button">Simpan</button>
+<script src="assets/js/duit.js"></script>
+
+
+<script>
+  $('#button').click(function() {
+    var kode_anggota= $('#agt_kode').val()
+    var tanggal= $('#tanggal').val()
+    var jumlah= $('#jumlah').val()
+
+    $.ajax({
+      type: "post",
+      url: url_folder_api+'/api/insert_tabungan.php',
+      data: {
+        kode:kode_anggota,
+        tgl:tanggal,
+        jml:jumlah
+      },
+      dataType: "json",
+      success: function (response) {
+        alert(response)
+        $('#agt_kode').val("");
+        $('#agt_nama').val("");
+        $('#jumlah').val("");
+      }
+    });
+  })
+</script>
+
+<script>
+  // Jquery Dependency
+  var tgl = new Date();
+  $("#tanggal").val(tgl.getFullYear() + "-" + (tgl.getMonth() + 1) + "-" + tgl.getDate());
+
+  $("#modalbd").load("pages/baca_nasabah.html");
+
+  $("#agt_nama").click(function () {
+    $("#modalId").modal("show");
+  });
+
+  function ambil_nasabah(element) {
+    $("#modalId").modal("hide");
+    $('#jumlah').trigger('focus');
+    $("#agt_nama").val($(element).attr("data_nama"));
+    $("#agt_kode").val($(element).attr("data_id"));
+  }
+</script>
