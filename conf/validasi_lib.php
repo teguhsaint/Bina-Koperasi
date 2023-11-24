@@ -6,6 +6,16 @@ class Validation
 
     public function validate($rules, $db)
     {
+        if (array_key_exists('file', $rules)) {
+            
+            $ruleFile = $rules['file'];
+            $arrayFile=explode(':', $ruleFile);
+            $max = $arrayFile[1];
+            $maxSize = $max * 1024 * 1024;
+            if ($_FILES['file']['size']>$maxSize) {
+                $this->errors['file']['error']= 'File melebihi ukuran maksimal';
+            }
+        }
         foreach ($_POST as $key => $isi) {
             if (isset($rules[$key])) {
                  
@@ -38,6 +48,7 @@ class Validation
             }
             $this->result[$key] = $db->real_escape_string(htmlspecialchars($isi));
         }
+      
         return empty($this->errors);
     }
 
