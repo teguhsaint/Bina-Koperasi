@@ -1,4 +1,4 @@
-<h3>Tambah pinjaman</h3>
+<h3 class="mt-3">Tambah pinjaman</h3>
 
 <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
@@ -12,80 +12,108 @@
   </div>
 </div>
 
-<div class="mb-3 mt-5">
-  <label for="" class="form-label">Kode pj</label>
-  <input type="text" disabled name="kode_pj" id="kode_pj" class="form-control" />
-</div>
-<div class="mb-3">
-  <label for="" class="form-label">kode Anggota</label>
-  <input type="text" disabled name="kode_Anggota" placeholder="Pilih Anggota" id="agt_kode" class="form-control" autocomplete="off" />
+<div class="row">
+  <div class="col-sm-6">
+    <div class="mb-3">
+      <label for="" class="form-label">Kode pj</label>
+      <input type="text" disabled name="kode_pj" id="kode_pj" class="form-control" />
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="mb-3">
+      <label for="" class="form-label">kode Anggota</label>
+      <input type="text" disabled name="kode_Anggota" placeholder="Pilih Anggota" id="agt_kode" class="form-control" autocomplete="off" />
+    </div>
+  </div>
 </div>
 <div class="mb-3">
   <label for="" class="form-label">nama Anggota</label>
   <input type="text" name="kode_Anggota" placeholder="Pilih Anggota" id="agt_nama" class="form-control" autocomplete="off" />
 </div>
 
-<div class="mb-3 mt-5">
+<div class="mb-3">
   <label for="" class="form-label">Tanggal</label>
   <input type="date" name="tanggal" id="tanggal" class="form-control" />
 </div>
 
-<div class="mb-3 mt-5">
-  <label for="" class="form-label">Jumlah</label>
-  <input type="text" name="jumlah" id="jumlah" class="form-control" data-type="currency" />
+<div class="row">
+  <div class="col-sm-4">
+    <div class="mb-3">
+      <label for="" class="form-label">Jumlah</label>
+      <input type="text" oninput="hitungBunga(this)" name="jumlah" id="jumlah" class="form-control" data-type="currency" />
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="mb-3">
+      <label for="" class="form-label">Bunga</label>
+      <input type="text" value="20" disabled name="bunga" id="bunga" class="form-control" data-type="currency" />
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="mb-3">
+      <label for="" class="form-label">Pinjaman + Bunga</label>
+      <input type="text" name="hasilbunga" id="hasilbunga" class="form-control" data-type="currency" />
+    </div>
+  </div>
 </div>
-<div class="mb-3 mt-5">
-  <label for="" class="form-label">bunga</label>
-  <input type="text" name="bunga" id="bunga" class="form-control" data-type="currency" />
-</div>
-<div class="mb-3 mt-5">
+
+<div class="mb-3 d-none">
   <label for="" class="form-label">status</label>
-  <input type="text" name="status" id="status" class="form-control" data-type="currency" />
+  <input type="text" name="status" value="1" id="status" class="form-control" />
 </div>
-<button id="button">Simpan</button>
+<button class="btn btn-primary float-end" id="button">Simpan</button>
+
 <script src="assets/js/duit.js"></script>
-
-
-<script>
-  $('#button').click(function() {
-    var kode_pj= $('#kode_pj').val()
-    var kode_Anggota = $('#agt_kode').val()
-    var tanggal= $('#tanggal').val()
-    var jumlah= $('#jumlah').val()
-    var bunga= $('#bunga').val()
-    var status= $('#status').val()
-
-    $.ajax({
-      type: "post",
-      url: url_folder_api+'/api/insert_pinjaman.php',
-      data: {
-        kode_pj:kode_pj,
-        kode_Anggota:kode_Anggota,
-        tanggal:tanggal,
-        jumlah:jumlah,
-        bunga:bunga,
-        status:status
-      },
-      dataType: "json",
-      success: function (response) {
-        console.log(response);
-        alert(response)
-        $('#kode_pj').val("");
-        $('#kode_Anggota').val("");
-        $('#tanggal').val("");
-        $('#jumlah').val("");
-        $('#bunga').val("");
-        $('#status').val("");
-      }
-    });
-  })
-</script>
 
 <script>
   // Jquery Dependency
   var tgl = new Date();
   $("#tanggal").val(tgl.getFullYear() + "-" + (tgl.getMonth() + 1) + "-" + tgl.getDate());
 
+  function hitungBunga(elemen) {
+    var bunga = 0.2;
+    var hasil = $(elemen).val().replaceAll(",", "") * bunga;
+    $("#bunga").val(20);
+    var final = Number(hasil) + Number($(elemen).val().replaceAll(",", ""));
+    $("#hasilbunga").val(final);
+  }
+</script>
+
+<script>
+  $("#button").click(function () {
+    var kode_pj = $("#kode_pj").val();
+    var kode_Anggota = $("#agt_kode").val();
+    var tanggal = $("#tanggal").val();
+    var jumlah = $("#jumlah").val();
+    var bunga = $("#bunga").val();
+    var status = $("#status").val();
+
+    $.ajax({
+      type: "post",
+      url: url_folder_api + "/api/insert_pinjaman.php",
+      data: {
+        kode_pj: kode_pj,
+        kode_Anggota: kode_Anggota,
+        tanggal: tanggal,
+        jumlah: jumlah,
+        bunga: bunga,
+        status: status,
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        alert(response);
+        $("#kode_pj").val("");
+        $("#kode_Anggota").val("");
+        $("#jumlah").val("");
+        $("#bunga").val("");
+        $("#hasilbunga").val("");
+      },
+    });
+  });
+</script>
+
+<script>
   $("#modalbd").load("pages/baca_pinjaman.html");
 
   $("#agt_nama").click(function () {
@@ -94,27 +122,24 @@
 
   function ambil_data_pinjaman(element) {
     $("#modalId").modal("hide");
-    $('#jumlah').trigger('focus');
+    $("#jumlah").trigger("focus");
     $("#agt_nama").val($(element).attr("data_nama"));
     $("#agt_kode").val($(element).attr("data_id"));
-    cek_kode($("#agt_kode").val())
+    cek_kode($("#agt_kode").val());
   }
-  function cek_kode(kode_Anggota){
-      var kode = kode_Anggota.replaceAll('O0','').replaceAll('_','')
-      $.ajax({
-        type: "POST",
-        url: url_folder_api+'api/model.php',
-        data: {
-            pr:'ambil_pjterakhir',
-            agt_kode:kode,
-        },
-        dataType: "json",
-        success: function (response) {
-            $('#kode_pj').val(response)
-        }
-      });
-   
-
+  function cek_kode(kode_Anggota) {
+    var kode = kode_Anggota.replaceAll("O0", "").replaceAll("_", "");
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "api/model.php",
+      data: {
+        pr: "ambil_pjterakhir",
+        agt_kode: kode,
+      },
+      dataType: "json",
+      success: function (response) {
+        $("#kode_pj").val(response);
+      },
+    });
   }
-  
 </script>
