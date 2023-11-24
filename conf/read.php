@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status = $_POST['status'];}
     try {
         $query = "INSERT INTO pinjaman (kode_pj, kode_anggota, tanggal, jumlah, bunga, status) 
-                  VALUES (:kode_pj, :kode_anggota, :tanggal, :jumlah, :bunga, :status)";
+                VALUES (:kode_pj, :kode_anggota, :tanggal, :jumlah, :bunga, :status)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':kode_pj', $kode_pj);
         $stmt->bindParam(':kode_anggota', $kode_anggota);

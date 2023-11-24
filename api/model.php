@@ -79,8 +79,25 @@ if (!empty($_POST['pr'])) {
                 $kode_terakhir = $kd . '_' . 1;
                 echo json_encode($kode_terakhir);
             }
+            break;
+        case 'ambil_pjterakhir':
+            $kd = $_POST['agt_kode'];
+            $que = "SELECT * FROM pinjaman WHERE kode_pj LIKE '%".$kd."%' ORDER bY kode_pj DESC LIMIT 1;";
+            $hasil = select_data_custom($que);
 
+            $kode_terakhir = '';
+            while ($a = mysqli_fetch_assoc($hasil)) {
+                $kode_terakhir = $a['kode_pj'];
+            }
 
+            if ($kode_terakhir !== '') {
+                $exp = explode("-", $kode_terakhir);
+                $kode_merge = $kd . '-' . (($exp[1]) + 1);
+                echo json_encode($kode_merge);
+            } else {
+                $kode_terakhir = $kd . '-' . 1;
+                echo json_encode($kode_terakhir);
+            }
             break;
         case 'ambil_ao':
             $hasil = select_data('ao');
