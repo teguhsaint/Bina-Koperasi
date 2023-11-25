@@ -107,14 +107,6 @@
           text: response,
           icon: 'success',
           confirmButtonText: 'OK',
-          customClass: {
-            popup: 'slow-fade'
-          },
-          onAfterClose:function(){
-            setTimeout(function () {
-              $('.swal2-container').remove();
-            }, 500);
-          }
         });
         $("#kode_pj").val("");
         $("#kode_Anggota").val("");

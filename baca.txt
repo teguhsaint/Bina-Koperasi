@@ -1,7 +1,6 @@
 Setiap Plugin Seperti
 - Datatable
 - FontAwesome
-- SweetAlert
+- SweetAlert2
 - Dll 
--Tajul GG
 Harap di taruh di folder Lib ( disini )
