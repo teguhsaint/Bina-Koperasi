@@ -24,164 +24,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
         <link rel="stylesheet" href="assets/css/custom.css" />
         <script src="assets/js/jquery.min.js"></script>
+
+
         <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/sr-1.3.0/datatables.min.css" rel="stylesheet" />
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/sr-1.3.0/datatables.min.js"></script>
     
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
         <script src="assets/js/route.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
-        <style>
-            main {
-              margin-bottom: 10px;
-              display: block;
-            }
-            .ball{
-              height:8em;
-              width:9em;
-              background-image:linear-gradient(0deg,#00FF51,#00FFFF);
-              position:absolute;
-              border-radius:19% 80% 56% 44% / 22% 80% 20% 78%  ;
-              bottom: 5%;
-              left: 20%;
-              right:8%;
-              z-index:-1;
-              animation:changeshapes1 20s linear infinite forwards;
-          }
-          .ball2{
-              height:8em;
-              width:9em;
-              background-image:linear-gradient(0deg,#FFCC00,#FFFF00);
-              position:absolute;
-              border-radius:53% 47% 62% 38% / 59% 30% 70% 41% ;
-              bottom:5%;
-              right:15%;
-              z-index:-1;
-              animation:changeshapes2 20s linear infinite backwards;
-          }
-          .ball3{
-              height:7em;
-              width:10em;
-              background-image:linear-gradient(0deg,#0088FF,#0000FF);
-              position:absolute;
-              border-radius:53% 47% 68% 32% / 60% 84% 16% 41%;
-              bottom:7%;
-              left: 45%;
-              right:60%;
-              z-index:-1;
-              animation:changeshapes3 20s linear infinite forwards;
-          }
-          @keyframes changeshapes1 {
-              0% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78% ;
-              }
-              10% {
-                  border-radius: 59% 41% 71% 29% / 17% 81% 19% 83% ;
-              }
-              20% {
-                  border-radius: 17% 83% 37% 63% / 82% 17% 83% 18% ;
-              }
-              30% {
-                  border-radius: 17% 83% 37% 63% / 71% 75% 25% 29% ;
-              }
-              40% {
-                  border-radius: 17% 83% 37% 63% / 25% 75% 25% 75% ;
-              }
-              50% {
-                  border-radius: 17% 83% 78% 22% / 25% 75% 25% 75% ;
-              }
-              60% {
-                  border-radius: 74% 26% 78% 22% / 69% 75% 25% 31% ;
-              }
-              70% {
-                  border-radius: 74% 26% 19% 81% / 69% 78% 22% 31% ;
-              }
-              80% {
-                  border-radius: 74% 26% 19% 81% / 18% 27% 73% 82% ;
-              }
-              90% {
-                  border-radius:74% 26% 52% 48% / 18% 68% 32% 82% ;
-              }
-              100% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78% ;
-              }
-          }
-          @keyframes changeshapes2 {
-              0% {
-                  border-radius: 53% 47% 62% 38% / 59% 30% 70% 41%;
-              }
-              10% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78%;
-              }
-              20% {
-                  border-radius: 34% 66% 51% 49% / 89% 11% 10% 90%;
-              }
-              30% {
-                  border-radius: 16% 84% 91% 9% / 75% 80% 20% 25%;
-              }
-              40% {
-                  border-radius: 72% 28% 51% 49% / 47% 53% 59% 41%;
-              }
-              50% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78%;
-              }
-              60% {
-                  border-radius: 29% 71% 75% 25% / 46% 54% 56% 44%;
-              }
-              70% {
-                  border-radius: 45% 55% 80% 20% / 46% 71% 29% 54%;
-              }
-              80% {
-                  border-radius: 62% 38% 53% 47% / 59% 30% 70% 41%;
-              }
-              90% {
-                  border-radius: 88% 12% 91% 9% / 14% 80% 91% 9%;
-              }
-              100%{
-                  border-radius:53% 47% 62% 38% / 59% 30% 70% 41%;
-              }
-          }
-          @keyframes changeshapes3 {
-              0% {
-                  border-radius: 53% 47% 68% 32% / 59% 84% 16% 41%;
-              }
-              10% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78%;
-              }
-              20% {
-                  border-radius: 45% 55% 80% 20% / 46% 71% 29% 54%;
-              }
-              30% {
-                  border-radius: 16% 84% 91% 9% / 75% 80% 20% 25%;
-              }
-              40% {
-                  border-radius: 21% 79% 36% 64% / 26% 26% 74% 74%;
-              }
-              50% {
-                  border-radius: 53% 47% 62% 38% / 59% 30% 70% 41%;
-              }
-              60% {
-                  border-radius: 19% 81% 56% 44% / 22% 80% 20% 78%;
-              }
-              70% {
-                  border-radius: 45% 55% 80% 20% / 46% 71% 29% 54%;
-              }
-              80% {
-                  border-radius: 16% 84% 91% 9% / 75% 80% 20% 25%;
-              }
-              90% {
-                  border-radius: 21% 79% 36% 64% / 26% 26% 74% 74%;
-              }
-              100% {
-                  border-radius: 53% 47% 68% 32% / 59% 84% 16% 41%;
-              }
-          }
-          </style>
   </head>
   <body>
 
@@ -344,19 +194,7 @@
       <!-- page-body-wrapper ends -->
     </div>
 
-    <script>
-  $("table").DataTable({
-    dom: "Bfrtip",
-    buttons: [
-      {
-        extend: "print",
-        exportOptions: {
-          columns: [0, 1, 2, 3],
-        },
-      }
-    ],
-  });
-</script>
+ 
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -379,6 +217,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sb-1.6.0/sp-2.2.0/sr-1.3.0/datatables.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
