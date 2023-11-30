@@ -82,7 +82,7 @@ if (!empty($_POST['pr'])) {
             break;
         case 'ambil_pjterakhir':
             $kd = $_POST['agt_kode'];
-            $que = "SELECT * FROM pinjaman WHERE kode_pj LIKE '%".$kd."%' ORDER bY kode_pj DESC LIMIT 1;";
+            $que = "SELECT * FROM pinjaman WHERE kode_pj LIKE '%" . $kd . "%' ORDER bY kode_pj DESC LIMIT 1;";
             $hasil = select_data_custom($que);
 
             $kode_terakhir = '';
