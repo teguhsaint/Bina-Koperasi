@@ -15,13 +15,13 @@
 
 <script>
   $(document).ready(function () {
-    $("#tabel-siswa").DataTable({
+    $("#tabel-nasabah").DataTable({
       processing: true,
       responsive: true,
       serverSide: true,
       searching: true,
       dom: "Bflrtip",
-      ajax: url_folder_api + "readData.php",
+      ajax: url_folder_api + "read_nasabah.php",
       columns: [
         { data: "index" },
         { data: "agt_nama" },
