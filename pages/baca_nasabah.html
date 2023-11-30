@@ -14,24 +14,32 @@
 </div>
 
 <script>
-  $(document).ready(function () {
+  $(document).ready(function() {
     $("#tabel-nasabah").DataTable({
       processing: true,
       responsive: true,
       serverSide: true,
       searching: true,
       dom: "Bflrtip",
-      ajax: url_folder_api + "read_nasabah.php",
-      columns: [
-        { data: "index" },
-        { data: "agt_nama" },
-        { data: "agt_nik" },
-        { data: "agt_alamat" },
-        { data: "agt_nohp" },
+      ajax: url_folder_api + "/api/read_nasabah.php",
+      columns: [{
+          data: "index"
+        },
+        {
+          data: "agt_nama"
+        },
+        {
+          data: "agt_nik"
+        },
+        {
+          data: "agt_alamat"
+        },
+        {
+          data: "agt_nohp"
+        },
       ],
       lengthMenu: [5, 10, 15, 20],
-      buttons: [
-        {
+      buttons: [{
           extend: "pdf",
           exportOptions: {
             columns: [0, 1, 2, 3],
