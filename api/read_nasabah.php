@@ -18,7 +18,7 @@ $columns = ['agt_id','agt_kode','agt_nama','agt_nik','agt_alamat','agt_nohp',
 'agt_ktp','tanggal_register'];
 $orderBy = $columns[$orderColumnIndex];
 
-$sql = "select * from nasabah";
+$sql = "select * from nasabah join ao on substing_index(nasabah.agt_kode,'_',1) = ao.kode_ao";
 
 $searchValue = $_GET['search']['value'];
 
@@ -38,7 +38,21 @@ $no = 1;
 
 $data = array();
 while ($row = $result->fetch_assoc()) {
-    // $row['index']=$no++;
+    $row['index']=$no++;
+    $tombol = [
+        'tombol'=> '
+        <a
+          href=""
+          id="edit"
+          data-id="' . $row['agt_id'] . '"
+          class="btn btn-flat btn-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          >edit</a>
+        <a href="" id="hapus" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+          >hapus</a>
+      '
+    ];
     $data[]=$row;
 };
 

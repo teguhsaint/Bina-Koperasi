@@ -1,31 +1,56 @@
-
 <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nama</th>
-                <th>Kode</th>
-            </tr>
-        </thead>
-        <tbody id="nasabah">
-        
-        </tbody>
-    </table>
+  <table class="table table-bordered table-hover" id="tabel-nasabah">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Nik</th>
+        <th>Alamat</th>
+        <th>No Hp</th>
+      </tr>
+    </thead>
+    <tbody id="nasabah"></tbody>
+  </table>
 </div>
 
 <script>
-    $.ajax({
-        type: "get",
-        url: url_folder_api+'/api/baca_agt.php',
-        dataType: "HTML",
-        success: function (response) {
-
-            $('#nasabah').html(response)
-             $('table').dataTable()
-        }
-        
+  $(document).ready(function () {
+    $("#tabel-siswa").DataTable({
+      processing: true,
+      responsive: true,
+      serverSide: true,
+      searching: true,
+      dom: "Bflrtip",
+      ajax: url_folder_api + "readData.php",
+      columns: [
+        { data: "index" },
+        { data: "agt_nama" },
+        { data: "agt_nik" },
+        { data: "agt_alamat" },
+        { data: "agt_nohp" },
+      ],
+      lengthMenu: [5, 10, 15, 20],
+      buttons: [
+        {
+          extend: "pdf",
+          exportOptions: {
+            columns: [0, 1, 2, 3],
+          },
+        },
+        {
+          extend: "excel",
+          exportOptions: {
+            columns: [0, 1, 2, 3],
+          },
+        },
+        {
+          extend: "print",
+          exportOptions: {
+            columns: [0, 1, 2, 3],
+          },
+        },
+        "colvis",
+      ],
     });
+  });
 </script>
-
-
