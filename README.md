@@ -6,12 +6,10 @@ Projek Aplikasi Koperasi, dari Komunitas :
 
 ## Anggota Projek Bina Koperasi
 
-| No  | Nama    | Posisi   |
-| --- | ------- | -------- |
-| 1   | Jeki    | BackEnd  |
-| 2   | Husnun  | FrontEnd |
-| 3   | Naufal  | BackEnd  |
-| 4   | Yahya   | FrontEnd |
-| 5   | Ajiz    | BackEnd  |
-| 6   | Tajul   | FrontEnd |
-| 7   | Septian | FrontEnd |
+| No  | Nama   | Posisi   |
+| --- | ------ | -------- |
+| 1   | Jeki   | BackEnd  |
+| 2   | Husnun | FrontEnd |
+| 3   | Naufal | BackEnd  |
+| 4   | Ajiz   | BackEnd  |
+| 5   | Tajul  | FrontEnd |
