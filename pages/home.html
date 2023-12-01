@@ -1,132 +1,218 @@
 <div class="row">
   <div class="col-sm-6 mb-3">
     <div class="card">
-      <div class="card-body">
-        <canvas id="myChart"></canvas>
+      <div class="card-body p-2">
+        <div id="myChart"></div>
       </div>
     </div>
   </div>
   <div class="col-sm-6 mb-3">
     <div class="card">
+      <div class="card-body p-2">
+        <div id="myChart2"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 mb-3">
+    <div class="card">
       <div class="card-body">
-        <canvas id="myChart2"></canvas>
+        <div class="card-title text-dark mb-3 border-bottom pb-3">5 Pinjaman Terakhir</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Tanggal</th>
+              <th>Nama Nasabah</th>
+              <th>Kode Nasabah</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody id="mbody"></tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th colspan="3" style="text-align: right">Total:</th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title text-dark mb-3 border-bottom pb-3">Nasabah Masuk</div>
+        <ul class="timeline mt-2 mb-0" id="timeline"></ul>
       </div>
     </div>
   </div>
 </div>
-<div class="ball"></div>
-<div class="ball2"></div>
-<div class="ball3"></div>
-
 <script>
-  var ctx = document.getElementById("myChart").getContext("2d");
-  var myChart = new Chart(ctx, {
-    type: "line",
-    responsive: true,
-    data: {
-      labels: [],
-      datasets: [
-        {
-          label: "Nasabah Masuk",
-          data: [],
-          backgroundColor: "rgba(45, 0, 255, 0.2)",
-          borderColor: "rgba(100, 0, 255, 1)",
-          fill: true,
-          borderWidth: 3,
-        },
-      ],
-    },
-    options: {
-      options: {
-        scales: {
-          x: {
-            border: {
-              display: false,
-            },
-          },
-          y: {
-            border: {
-              display: false,
-            },
-          },
-        },
-      },
+  $.ajax({
+    type: "GET",
+    url: url_folder_api + "/api/timeline.php",
+    dataType: "html",
+    success: function (hasil) {
+      $("#timeline").html(hasil);
     },
   });
+  function addCommas(nStr) {
+    nStr += "";
+    x = nStr.split(".");
+    x1 = x[0];
+    x2 = x.length > 1 ? "." + x[1] : "";
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, "$1" + "," + "$2");
+    }
+    return x1 + x2;
+  }
+  $.ajax({
+    type: "GET",
+    url: url_folder_api + "/api/api_home.php",
+    dataType: "html",
+    data: {
+      command: "pinjaman_singkat",
+    },
+    success: function (hasil) {
+      $("#mbody").html(hasil);
+
+      new DataTable(".table", {
+        responsive: true,
+        dom: "rt",
+        footerCallback: function (row, data, start, end, display) {
+          let api = this.api();
+
+          let intVal = function (i) {
+            return typeof i === "string" ? i.replace(/[\Rp.,]/g, "") * 1 : typeof i === "number" ? i : 0;
+          };
+
+          total = api
+            .column(4)
+            .data()
+            .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+          pageTotal = api
+            .column(4, { page: "current" })
+            .data()
+            .reduce((a, b) => intVal(a) + intVal(b), 0);
+
+          api.column(4).footer().innerHTML = "Rp." + addCommas(pageTotal);
+        },
+      });
+    },
+  });
+</script>
+<script>
+  // Inisialisasi chart garis
+  var optionsLine = {
+    chart: {
+      type: "area",
+      stacked: false,
+    },
+    series: [
+      {
+        name: "Nasabah Masuk",
+        data: [],
+      },
+    ],
+    xaxis: {
+      categories: [],
+    },
+  };
+
+  var chartLine = new ApexCharts(document.querySelector("#myChart"), optionsLine);
+  chartLine.render();
+
+  // Inisialisasi chart batang
+  var optionsBar = {
+    chart: {
+      type: "bar",
+      stacked: false,
+    },
+    series: [
+      {
+        name: "Nasabah Resort",
+        data: [],
+      },
+    ],
+    xaxis: {
+      categories: [],
+    },
+  };
+
+  var chartBar = new ApexCharts(document.querySelector("#myChart2"), optionsBar);
+  chartBar.render();
 
   function ambil_statis() {
     $.ajax({
-      type: "POST",
-      url: url_folder_api + "api/model.php",
+      type: "GET",
+      url: url_folder_api + "/api/api_home.php",
+      dataType: "html",
       data: {
-        pr: "statistik_nasabah_masuk",
+        command: "statistik_nasabah_masuk",
       },
+
       dataType: "JSON",
       success: function (response) {
+        var labels = [];
+        var data = [];
+
         $.each(response, function (ins, vas) {
-          myChart.data.labels.push(vas["tgl"]);
-          myChart.data.datasets[0].data.push(vas["jumlah"].replaceAll('"', ""));
-          myChart.update();
+          labels.push(vas["tgl"]);
+          data.push(vas["jumlah"].replaceAll('"', ""));
+        });
+
+        chartLine.updateSeries([
+          {
+            data: data,
+          },
+        ]);
+        chartLine.updateOptions({
+          xaxis: {
+            categories: labels,
+          },
         });
       },
     });
   }
 
-  var ctx2 = document.getElementById("myChart2").getContext("2d");
-  var myChart2 = new Chart(ctx2, {
-    type: "bar",
-    responsive: true,
-    data: {
-      labels: [],
-      datasets: [
-        {
-          label: "Nasabah Resort",
-          data: [],
-
-          backgroundColor: ["rgba(225, 0, 0, 0.2)", "rgba(0, 0, 255, 0.2)", "rgba(0, 255, 0, 0.2)", "rgba(255, 255, 0, 0.2)"],
-          borderColor: ["rgba(225, 0, 0, 1)", "rgba(0, 0, 255,1)", "rgba(0, 255, 0, 1)", "rgba(255, 255, 0, 1)"],
-          fill: true,
-          borderWidth: 3,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        x: {
-          border: {
-            display: false,
-          },
-        },
-        y: {
-          border: {
-            display: false,
-          },
-        },
-      },
-    },
-  });
-
   function get_nasabahperresort() {
     var no = 0;
     $.ajax({
-      type: "POST",
-      url: url_folder_api + "api/model.php",
+      type: "GET",
+      url: url_folder_api + "api/api_home.php",
       data: {
-        pr: "statistik_nasabah_perresort",
+        command: "statistik_resort",
       },
       dataType: "JSON",
       success: function (response) {
+        console.log(response);
+        var labels = [];
+        var data = [];
+
         for (let index = 0; index < response.length; index++) {
           no++;
           console.log(response[index]["AO0" + no]);
-          myChart2.data.labels.push(["AO0" + no]);
-
-          myChart2.data.datasets[0].data.push(response[index]["AO0" + no].replaceAll('"', ""));
-          myChart2.update();
+          labels.push(["AO0" + no]);
+          data.push(response[index]["AO0" + no].replaceAll('"', ""));
         }
+
+        chartBar.updateSeries([
+          {
+            data: data,
+          },
+        ]);
+        chartBar.updateOptions({
+          xaxis: {
+            categories: labels,
+          },
+        });
       },
     });
   }
+
   get_nasabahperresort();
   ambil_statis();
 </script>

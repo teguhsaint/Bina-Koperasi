@@ -18,3 +18,12 @@ body[data-theme="colored"] footer.footer {
 body[data-theme="dark"] footer.footer {
   background: #19222c !important;
 }
+.sidebar-dropdown .sidebar-link:before {
+  content: "";
+  color: transparent;
+  display: inline-block;
+  left: -14px;
+  position: relative;
+  transform: translateX(0);
+  transition: all 0.1s ease;
+}
