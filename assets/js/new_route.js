@@ -24,7 +24,7 @@ $(document).ready(function () {
   });
   function load_halaman(halaman_apa) {
     $(selector_loadHalaman).hide();
-    $(selector_loadHalaman).load(dir_halaman + halaman_apa + ".html");
+    $(selector_loadHalaman).load(dir_halaman + halaman_apa);
     $(selector_loadHalaman).fadeIn(300);
   }
 });
