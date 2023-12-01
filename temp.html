@@ -9,21 +9,20 @@
     <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="shortcut icon" href="img/logo.webp" />
 
-    <title>AdminKit - Blank Page</title>
+    <title>Koperasi</title>
 
     <link href="css/app.css" rel="stylesheet" />
     <link href="css/nav.css" rel="stylesheet" />
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-    
-    
+
     <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-1.13.8/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/fh-3.4.0/r-2.5.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/sr-1.3.0/datatables.min.css" rel="stylesheet" />
-    
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.9.0/sweetalert2.all.min.js"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link class="js-stylesheet" href="css/light.css" rel="stylesheet" />
     <script src="js/settings.js"></script>
@@ -33,12 +32,62 @@
     <div class="wrapper">
       <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-          <a class="sidebar-brand" href="index.html">
-            <span class="align-middle">Jaya Koperasi</span>
-          </a>
+          <a class="sidebar-brand" href="/">
+            <span class="sidebar-brand-text d-flex align-items-center">
+              <img class="me-3" src="img/logo.webp" alt="" width="40px" srcset="" />
+              Koperasi
+            </span>
 
+            <img class="sidebar-brand-icon align-middle" src="img/logo.webp" alt="" width="32px" height="32px" />
+          </a>
+          <div class="sidebar-user">
+            <div class="d-flex justify-content-center">
+              <div class="flex-shrink-0">
+                <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" />
+              </div>
+              <div class="flex-grow-1 ps-2">
+                <a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown"> Charles Hall </a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="/pages-profile"
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle me-1">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Profile</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pie-chart align-middle me-1">
+                      <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                      <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                    </svg>
+                    Analytics</a
+                  >
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/pages-settings"
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings align-middle me-1">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    Settings &amp; Privacy</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle align-middle me-1">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Help Center</a
+                  >
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+
+                <div class="sidebar-user-subtitle">Designer</div>
+              </div>
+            </div>
+          </div>
           <ul class="sidebar-nav">
-            <li class="sidebar-header">Pages</li>
+            <li class="sidebar-header">Dashboard</li>
 
             <li class="sidebar-item">
               <a class="sidebar-link linkpage" data-halaman="home.html" href="javascript:void(0)"> <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span> </a>
@@ -244,7 +293,7 @@
         </footer>
       </div>
     </div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
