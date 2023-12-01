@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+        <th>#</th>
+        <th></th>
+        <th>kode_Anggota</th>
+    </thead>
+
+    <tbody id="nasabah">
+        
+    </tbody>
+</table>
+
+
+<script>
+    $.ajax({
+        type: "get",
+        url: url_folder_api+'/api/read_tabungan.php',
+        dataType: "HTML",
+        success: function (response) {
+
+            $('#nasabah').html(response)
+             $('table').dataTable()
+        }
+        
+    });
+</script>
