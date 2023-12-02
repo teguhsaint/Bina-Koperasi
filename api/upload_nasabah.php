@@ -80,16 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $respon['respon'] = 'method tidak sesuai';
 }
 
-if ($_POST['aksi'] == 'edit') {
+if (isset($_POST['aksi']) && $_POST['aksi'] == 'edit') {
     require_once 'connect.php';
    
-   
+
     $id = $_POST['id'];
     $nama = $_POST['agt_nama'];
     $alamat = $_POST['agt_alamat'];
     $nohp = $_POST['agt_nohp'];
     $nik  = $_POST['agt_nik'];
-    
+
     $sql = "update nasabah
         set agt_nama ='$nama',
             agt_alamat ='$alamat',
