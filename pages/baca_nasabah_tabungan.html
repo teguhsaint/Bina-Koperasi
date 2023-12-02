@@ -1,13 +1,13 @@
-<table class="table table-striped" id="myTable">
+<table class="table table-striped" id="myTable" style="width:100%">
   <thead>
     <tr>
       <th>#</th>
 
-      <th>kode_agt</th>
-      <th>tanggal</th>
-      <th>jumlah</th>
+      <th>KODE NASABAH</th>
+      <th>TGL</th>
+      <th>Jumlah</th>
 
-      <th>agt_nama</th>
+      <th>Nama Nasabah</th>
 
       <th>Option</th>
     </tr>
@@ -61,6 +61,37 @@
     dataType: "html",
     success: function (response) {
       $("#bodytable").html(response);
+      $('table').dataTable({
+      dom:'Blftip',
+        responsive:true,
+        buttons:[
+          {
+                text: '<i class="fas fa-plus-square me-2"></i>Tabungan',
+                className: "btn-warning",
+                action: function ( e, dt, node, config ) {
+                  halaman_saatini="tambh_tabungan.html"
+                  localStorage.setItem("halaman_tersimpan", halaman_saatini);
+                  load_halaman(halaman_saatini);
+
+                }
+          },
+          {
+            extend:'print',
+            className: "btn-info",
+            text:'<i class="fas fa-print me-2"></i>Cetak',
+            exportOptions: {
+            columns: [0, 1, 2, 3, 4],
+            },
+          },{
+            extend:'excel',
+            className: "btn-success",
+            text:'<i class="fas fa-file-excel me-2"></i>Export Excel',
+            exportOptions: {
+            columns: [0, 1, 2, 3, 4],
+            },
+          }
+        ]
+      })
     },
   });
 </script>

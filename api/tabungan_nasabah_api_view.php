@@ -8,7 +8,7 @@ $db_password = "";
 $db_name = "db_koperasi";
 $conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-$query = "SELECT * FROM tabungan_nasabah";
+$query = "SELECT * FROM tabungan JOIN nasabah ON nasabah.agt_kode = tabungan.kode_agt";
 $res = mysqli_query($conn, $query);
 
 $html = "";
@@ -19,7 +19,7 @@ foreach ($res as $key) {
 
 <td>" . $key['kode_agt'] . "</td>
 <td>" . $key['tanggal'] . "</td>
-<td>" . $key['jumlah'] . "</td>
+<td>Rp." . number_format($key['jumlah']) . "</td>
 <td>" . $key['agt_nama'] . "</td>
 <td><button onclick=\"button_muncul('".$key['id_tbg']."','". $key['kode_agt']."','". $key['tanggal']."','". $key['jumlah']."','" . $key['agt_nama'] ."')\" id='tombolOption' class='btn btn-sm btn-success' data-id=''><i class='fas fa-cog'></i></button></td>
 </tr>";
