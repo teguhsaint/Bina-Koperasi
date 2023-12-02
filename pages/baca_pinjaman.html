@@ -20,6 +20,7 @@
         success: function (response) {
             $('#nasabah').html(response);
             $('table').dataTable({
+                responsive:true,
                 dom: "Blftrip",
                 buttons: [
                     {
