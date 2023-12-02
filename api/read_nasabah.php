@@ -35,7 +35,26 @@ $no = 1;
 
 $data = array();
 while ($row = $result->fetch_assoc()) {
-    $data[] = $row;
+    $row['index'] = $no++;
+    $ktp =$row['agt_ktp'];
+    $tombol = [
+        'tombol'=> '
+        <button
+          
+          id="edit"
+          data-id="' . $row['agt_id'] . '"
+          class="btn btn-flat btn-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          >edit</button>
+        <button  id="hapus" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+          >hapus</button>
+      ',
+      'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'
+      
+      
+    ];
+    $data[] = $row + $tombol;
 }
 
 $output = [

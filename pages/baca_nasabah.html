@@ -4,27 +4,116 @@
       <tr>
         <th>No</th>
         <th>Nama</th>
+        <th>Kode Anggota</th>
         <th>Nik</th>
         <th>Alamat</th>
         <th>No Hp</th>
+        <th>Ktp</th>
+        <th>Opsi</th>
       </tr>
     </thead>
     <tbody id="nasabah"></tbody>
   </table>
 </div>
 
+<div
+  class="modal fade modal-nasabah"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          Modal title
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" id="form-nasabah">
+          <input type="hidden" name="id" id="id" />
+          <div class="mb-3">
+            <label for="agt_nama" class="form-label">nama</label>
+            <input
+              type="text"
+              data-fake="name"
+              name="agt_nama"
+              id="agt_nama"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="alamat" class="form-label">alamat</label>
+            <input
+              type="text"
+              data-fake="address"
+              name="agt_alamat"
+              id="agt_alamat"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="agt_nohp" class="form-label">no hp</label>
+            <input
+              type="text"
+              data-fake="phoneNumber"
+              name="agt_nohp"
+              id="agt_nohp"
+              class="form-control"
+              placeholder=""
+              aria-describedby="helpId"
+            />
+          </div>
+          <button type="submit" hidden="1" value="submit" id="submit"></button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Batal
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          onclick="$('#submit').click()"
+        >
+          Simpan
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function () {
     $("#tabel-nasabah").DataTable({
       processing: true,
-      responsive: true,
+      responsive: false,
       serverSide: true,
       searching: true,
       dom: "Bflrtip",
       ajax: url_folder_api + "/api/read_nasabah.php",
       columns: [
         {
+          data: "index",
+        },
+        {
           data: "agt_nama",
+        },
+        {
+          data: "agt_kode",
         },
         {
           data: "agt_nik",
@@ -34,6 +123,12 @@
         },
         {
           data: "agt_nohp",
+        },
+        {
+          data: "image",
+        },
+        {
+          data: "tombol",
         },
       ],
       lengthMenu: [5, 10, 15, 20],
@@ -58,6 +153,41 @@
         },
         "colvis",
       ],
+    });
+
+    $("#tabel-nasabah").on("click", "#hapus", function () {
+      event.preventDefault();
+      var id = $(this).data("id");
+
+      var ambilGambar = $("#gambar").attr("src");
+      var gambar = "../" + ambilGambar;
+      console.log(gambar);
+      $.ajax({
+        type: "POST",
+        url: url_folder_api + "api/hapus_nasabah.php",
+        data: { id: id, gambar: gambar },
+        dataType: "JSON",
+        success: function (response) {
+          console.log(response);
+        },
+      });
+    });
+    $("#tabel-nasabah").on("click", "#edit", function () {
+      event.preventDefault();
+      var id = $(this).data("id");
+      $.ajax({
+        type: "POST",
+        url: url_folder_api + "api/get_edit_nasabah.php",
+        data: { id: id },
+        dataType: "json",
+        success: function (response) {
+          var data = response.data;
+          console.log(data.agt_nama);
+          $("#agt_nama").val(data.agt_nama);
+          $("#agt_alamat").val(data.agt_alamat);
+          $("#agt_nohp").val(data.agt_nohp);
+        },
+      });
     });
   });
 </script>
