@@ -42,6 +42,7 @@
       </div>
       <div class="modal-body">
         <form action="" id="form-nasabah">
+          <input type="hidden" name="id" id="id" />
           <div class="mb-3">
             <label for="agt_kode" class="form-label">Nik</label>
             <input
@@ -200,20 +201,17 @@
 
     $(".modal-nasabah").on("click", "#hapus", function () {
       event.preventDefault();
-      var id = $("#opt").data("id");
-
+      var id = $("#id").val();
       var ambilGambar = $("#gambar").attr("src");
       var gambar = "../" + ambilGambar;
-
       $.ajax({
         type: "POST",
         url: url_folder_api + "api/hapus_nasabah.php",
         data: { id: id, gambar: gambar },
         dataType: "JSON",
         success: function (response) {
-          console.log(response);
-          $("#tabel-nasabah").DataTable().ajax.reload();
           $(".modal-nasabah").modal("hide");
+          $("#tabel-nasabah").DataTable().ajax.reload();
         },
       });
     });
@@ -221,6 +219,7 @@
       $(".modal-nasabah").modal("show");
       event.preventDefault();
       var id = $(this).data("id");
+      console.log(id);
       $.ajax({
         type: "POST",
         url: url_folder_api + "api/get_edit_nasabah.php",
@@ -241,11 +240,11 @@
       e.preventDefault();
       var formData = $("#form-nasabah").serialize();
       var id = $("#opt").data("id");
-      var data = formData + "&aksi=edit&id=" + id;
+      var data = formData + "&aksi=edit";
 
       $.ajax({
         type: "POST",
-        url: url_folder_api + "api/upload.php",
+        url: url_folder_api + "api/upload_nasabah.php",
         data: data,
         dataType: "json",
         success: function (response) {
