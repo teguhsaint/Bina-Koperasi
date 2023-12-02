@@ -38,10 +38,11 @@ $data = array();
 while ($row = $result->fetch_assoc()) {
     $row['index'] = $no++;
     $ktp =$row['agt_ktp'];
+    $id = $row['agt_id'];
     $tombol = [
         'tombol'=> '
         
-        <button id="opt" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+        <button id="opt" data-id="' . $id. '" class="btn btn-danger"
           >Opt</button>
       ',
       'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'
