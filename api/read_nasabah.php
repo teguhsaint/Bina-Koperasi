@@ -41,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
     $tombol = [
         'tombol'=> '
         
-        <button id="edit" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+        <button id="opt" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
           >Opt</button>
       ',
       'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'

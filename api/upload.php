@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             $sql = "INSERT INTO nasabah VALUES('', '$kode', '$nama', '$nik', '$alamat', '$hp', '$ktp','$tglmasuks')";
                             $result = $db->query($sql);
-                            if (mysqli_affected_rows($db)) {
+                            if ($db->affected_rows > 0) {
                                 $respon['respon'] = 'data berhasil tersimpan';
                             } else {
                                 $respon['respon'] = 'gagal menyimpan data';
@@ -78,5 +78,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     $respon['respon'] = 'method tidak sesuai';
+}
+
+if ($_POST['aksi'] == 'edit') {
+    require_once 'connect.php';
+   
+   
+    $id = $_POST['id'];
+    $nama = $_POST['agt_nama'];
+    $alamat = $_POST['agt_alamat'];
+    $nohp = $_POST['agt_nohp'];
+    $nik  = $_POST['agt_nik'];
+    
+    $sql = "update nasabah
+        set agt_nama ='$nama',
+            agt_alamat ='$alamat',
+            agt_nohp ='$nohp',
+            agt_nik  = '$nik'
+        where agt_id ='$id'";
+    $db->query($sql);
+    if ($db->affected_rows > 0) {
+        $respon['respon'] = 'data berhasil disimpan';
+    } else {
+        $respon['respon'] = 'tidak ada data yang di ubah';
+    }
+
 }
 echo json_encode($respon);
