@@ -1,4 +1,9 @@
 <?php
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *'); 
+
+
 require_once 'connect.php';
 $id = $_POST['id'];
 $sql = "select * from nasabah where agt_id = '$id'";

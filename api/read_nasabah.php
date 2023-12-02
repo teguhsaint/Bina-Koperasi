@@ -40,16 +40,9 @@ while ($row = $result->fetch_assoc()) {
     $ktp =$row['agt_ktp'];
     $tombol = [
         'tombol'=> '
-        <button
-          
-          id="edit"
-          data-id="' . $row['agt_id'] . '"
-          class="btn btn-flat btn-warning"
-          data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop"
-          >edit</button>
-        <button  id="hapus" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
-          >hapus</button>
+        
+        <button id="edit" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+          >Opt</button>
       ',
       'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'
       
