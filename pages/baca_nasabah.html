@@ -1,18 +1,22 @@
-  <table class="table table-bordered table-hover" style="width:100%" id="tabel-nasabah">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Kode Anggota</th>
-        <th>Nik</th>
-        <th>Alamat</th>
-        <th>No Hp</th>
-        <th>Ktp</th>
-        <th>Opsi</th>
-      </tr>
-    </thead>
-    <tbody id="nasabah"></tbody>
-  </table>
+<table
+  class="table table-bordered table-hover"
+  style="width: 100%;"
+  id="tabel-nasabah"
+>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Kode Anggota</th>
+      <th>Nik</th>
+      <th>No Hp</th>
+      <th>Ktp</th>
+      <th>Opsi</th>
+      <th>Alamat</th>
+    </tr>
+  </thead>
+  <tbody id="nasabah"></tbody>
+</table>
 
 <div
   class="modal fade modal-nasabah"
@@ -80,23 +84,26 @@
       </div>
       <div class="p-3 w-100 d-flex justify-content-between">
         <div class="">
-          <button class="btn btn-outline-danger border-0 float-start">Hapus</button>
-          
+          <button class="btn btn-outline-danger border-0 float-start">
+            Hapus
+          </button>
         </div>
         <div class="div">
-
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
             Batal
           </button>
           <button
-          type="button"
-          class="btn btn-primary"
-          onclick="$('#submit').click()"
+            type="button"
+            class="btn btn-primary"
+            onclick="$('#submit').click()"
           >
-          Simpan
-        </button>
-      </div>
-          
+            Simpan
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -106,7 +113,7 @@
   $(document).ready(function () {
     $("#tabel-nasabah").DataTable({
       processing: true,
-      responsive: false,
+      responsive: true,
       serverSide: true,
       searching: true,
       dom: "Bflrtip",
@@ -125,9 +132,6 @@
           data: "agt_nik",
         },
         {
-          data: "agt_alamat",
-        },
-        {
           data: "agt_nohp",
         },
         {
@@ -135,6 +139,9 @@
         },
         {
           data: "tombol",
+        },
+        {
+          data: "agt_alamat",
         },
       ],
       lengthMenu: [5, 10, 15, 20],
@@ -179,7 +186,7 @@
       });
     });
     $("#tabel-nasabah").on("click", "#edit", function () {
-      $('.modal-nasabah').modal('show')
+      $(".modal-nasabah").modal("show");
       event.preventDefault();
       var id = $(this).data("id");
       $.ajax({
