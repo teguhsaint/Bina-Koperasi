@@ -24,7 +24,8 @@ if (!empty($searchValue)) {
     $sql .= " WHERE agt_nama LIKE '%$searchValue%'
              OR agt_nik LIKE '%$searchValue%' 
              OR agt_alamat LIKE '%$searchValue%' 
-             OR agt_nohp LIKE '%$searchValue%'";
+             OR agt_nohp LIKE '%$searchValue%'
+             OR agt_kode LIKE '%$searchValue%'";
 }
 
 $sql .= " ORDER BY $orderBy $orderDir LIMIT $start, $limit";
