@@ -1,0 +1,98 @@
+<table class="table table-striped" id="myTable">
+  <thead>
+    <tr>
+      <th>#</th>
+
+      <th>kode_agt</th>
+      <th>tanggal</th>
+      <th>jumlah</th>
+
+      <th>agt_nama</th>
+
+      <th>Option</th>
+    </tr>
+  </thead>
+  <tbody id="bodytable"></tbody>
+</table>
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="id_tbg" />
+        <div class="mb-3">
+          <label for="" class="form-label">Kode Anggota</label>
+          <input type="text" disabled name="agt_kode" id="agt_kode" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label">Nama Anggota</label>
+          <input type="text" name="agt_nama" placeholder="Pilih Anggota" id="agt_nama" class="form-control" autocomplete="off" />
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label">Tanggal</label>
+          <input type="date" name="tanggal" id="tanggal" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label">Jumlah</label>
+          <input type="text" name="jumlah" id="jumlah" class="form-control" data-type="currency" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger">Hapus</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" onclick="Update()" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $.ajax({
+    type: "GET",
+    url: url_folder_api + "/api/tabungan_nasabah_api_view.php",
+    dataType: "html",
+    success: function (response) {
+      $("#bodytable").html(response);
+    },
+  });
+</script>
+
+<script>
+  function button_muncul(id, kode_agt, Tanggal, Jumlah, Nama) {
+    $("#modalId").modal("show");
+
+    $("#id_tbg").val(id);
+    $("#agt_kode").val(kode_agt);
+    $("#agt_nama").val(Nama);
+    $("#tanggal").val(Tanggal);
+    $("#jumlah").val(Jumlah);
+  }
+
+  function Update() {
+    var datad = {
+      id: $("#id_tbg").val(),
+      kode: $("#agt_kode").val(),
+      nama: $("#agt_nama").val(),
+      tanggal: $("#tanggal").val(),
+      jumlah: $("#jumlah").val(),
+    };
+
+    $.ajax({
+      type: "POST",
+      url: url_folder_api + "/api/update_tabungan.php",
+      data: datad,
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+      },
+    });
+  }
+</script>

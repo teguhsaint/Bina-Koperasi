@@ -1,10 +1,8 @@
-<table class="table table-bordered" style="width:100%">
-    <thead class="text-uppercase">
-        
+<table class="table table-bordered">
+    <thead>
         <th>#</th>
-        <th>KODE NASABAH</th>
-        <th>NAMA NASABAH</th>
-        
+        <th></th>
+        <th>kode_Anggota</th>
     </thead>
 
     <tbody id="nasabah">
@@ -15,8 +13,8 @@
 
 <script>
     $.ajax({
-        type: "GET",
-        url: url_folder_api+'/api/baca_agt.php',
+        type: "get",
+        url: url_folder_api+'/api/read_tabungan.php',
         dataType: "HTML",
         success: function (response) {
 

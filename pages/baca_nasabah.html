@@ -116,7 +116,7 @@
       responsive: true,
       serverSide: true,
       searching: true,
-      dom: "Bflrtip",
+      dom: "Blfrtip",
       ajax: url_folder_api + "/api/read_nasabah.php",
       columns: [
         {
@@ -148,18 +148,22 @@
       buttons: [
         {
           extend: "pdf",
+          className: "btn-danger",
+
           exportOptions: {
             columns: [0, 1, 2, 3],
           },
         },
         {
           extend: "excel",
+          className: "btn-success",
           exportOptions: {
             columns: [0, 1, 2, 3],
           },
         },
         {
           extend: "print",
+          className: "btn-warning",
           exportOptions: {
             columns: [0, 1, 2, 3],
           },
