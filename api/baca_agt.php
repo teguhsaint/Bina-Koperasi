@@ -7,7 +7,7 @@ $db_password = "";
 $db_name = "db_koperasi";
 
 $koneksi = mysqli_connect($db_host, $db_user, $db_password, $db_name);
-$res= mysqli_query($koneksi,'SELECT * FROM nasabah  ');
+$res= mysqli_query($koneksi, 'SELECT * FROM nasabah WHERE NOT EXISTS ( SELECT 1 FROM pinjaman WHERE nasabah.agt_kode = pinjaman.kode_anggota AND pinjaman.status = 1 ) ORDER BY agt_kode ASC;  ');
 
 $html ="";
 $no=1;

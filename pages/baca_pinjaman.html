@@ -12,17 +12,26 @@
     </tbody>
 </table>
 
-
 <script>
     $.ajax({
         type: "get",
-        url: url_folder_api+'/api/baca_pinjaman.php',
+        url: url_folder_api + '/api/baca_pinjaman.php',
         dataType: "HTML",
         success: function (response) {
-
-            $('#nasabah').html(response)
-             $('table').dataTable()
+            $('#nasabah').html(response);
+            $('table').dataTable({
+                dom: "Blftrip",
+                buttons: [
+                    {
+                        extend: "print",
+                        text: "Cetak Langsung",
+                        className: "btn-success",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                        },
+                    }
+                ]
+            });
         }
-        
     });
 </script>
