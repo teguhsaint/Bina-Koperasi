@@ -1,9 +1,9 @@
-<table class="table table-bordered">
+<table class="table table-bordered" style="width:100%">
     <thead class="text-uppercase">
         
-        <th>tanggal </th>
-        <th>kode_pj</th>
-        <th>nama</th>
+        <th>#</th>
+        <th>KODE NASABAH</th>
+        <th>NAMA NASABAH</th>
         
     </thead>
 
@@ -15,7 +15,7 @@
 
 <script>
     $.ajax({
-        type: "get",
+        type: "GET",
         url: url_folder_api+'/api/baca_agt.php',
         dataType: "HTML",
         success: function (response) {

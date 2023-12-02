@@ -14,10 +14,10 @@ $no=1;
 foreach ($res as $key) {
     
     $html.= "
-    <tr onclick='ambil_nasabah(this)' data_id='".$key['agt_kode']. "' data_nama='" . $key['agt_nama'] . "'>
+    <tr onclick='ambil_data_pinjaman(this)' data_id='".$key['agt_kode']. "' data_nama='" . $key['agt_nama'] . "'>
     <td>".$no++."</td>
-    <td>".$key['agt_nama']. "</td>
     <td>" . $key['agt_kode'] . "</td>
+    <td>".$key['agt_nama']. "</td>
 </tr>
     ";
 
