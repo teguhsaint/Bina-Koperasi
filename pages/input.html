@@ -6,12 +6,7 @@
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">Pilih AO</label>
-            <select
-              class="form-control form-select"
-              onchange="ambil_kode_akhir(this)"
-              name="ao_kode"
-              id="ao_kode"
-            >
+            <select class="form-control form-select" onchange="ambil_kode_akhir(this)" name="ao_kode" id="ao_kode">
               <option selected disabled>Pilih AO</option>
             </select>
           </div>
@@ -19,79 +14,39 @@
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">Kode Anggota Baru</label>
-            <input
-              type="text"
-              name="agt_kode"
-              id="agt_kode"
-              placeholder="Kode Anggota"
-              class="form-control"
-              required
-            />
+            <input type="text" name="agt_kode" id="agt_kode" placeholder="Kode Anggota" class="form-control" required />
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">NIK</label>
-            <input
-              type="number"
-              data-fake="nik"
-              name="agt_nik"
-              placeholder="Nomor Induk Kependudukan (16 digit)"
-              class="form-control"
-              required
-            />
+            <input type="number" data-fake="nik" name="agt_nik" placeholder="Nomor Induk Kependudukan (16 digit)" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">Nama Lengkap</label>
-            <input
-              type="text"
-              data-fake="name"
-              name="agt_nama"
-              placeholder=""
-              class="form-control"
-              required
-            />
+            <input type="text" data-fake="name" name="agt_nama" placeholder="" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-12">
           <div class="mb-3">
             <label class="form-label">Alamat</label>
-            <textarea
-              type="text"
-              data-fake="address"
-              name="agt_alamat"
-              placeholder=""
-              class="form-control"
-              required
-            ></textarea>
+            <textarea type="text" data-fake="address" name="agt_alamat" placeholder="" class="form-control" required></textarea>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">No Hp</label>
-            <input
-              type="text"
-              data-fake="phoneNumber"
-              name="agt_nohp"
-              placeholder="6281xxxxxxxxx"
-              class="form-control"
-              required
-            />
+            <input type="text" data-fake="phoneNumber" name="agt_nohp" placeholder="6281xxxxxxxxx" class="form-control" required />
           </div>
         </div>
         <div class="col-sm-6">
           <div class="mb-3">
             <label class="form-label">Foto KTP</label>
 
-            <input
-              type="file"
-              class="form-control"
-              id="fileInput"
-              name="agt_ktp"
-            />
+            <input type="file" class="form-control" id="fileInput" name="agt_ktp" />
           </div>
         </div>
       </div>
