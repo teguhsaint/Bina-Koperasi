@@ -24,7 +24,8 @@ if (!empty($searchValue)) {
     $sql .= " WHERE agt_nama LIKE '%$searchValue%'
              OR agt_nik LIKE '%$searchValue%' 
              OR agt_alamat LIKE '%$searchValue%' 
-             OR agt_nohp LIKE '%$searchValue%'";
+             OR agt_nohp LIKE '%$searchValue%'
+             OR agt_kode LIKE '%$searchValue%'";
 }
 
 $sql .= " ORDER BY $orderBy $orderDir LIMIT $start, $limit";
@@ -35,7 +36,19 @@ $no = 1;
 
 $data = array();
 while ($row = $result->fetch_assoc()) {
-    $data[] = $row;
+    $row['index'] = $no++;
+    $ktp =$row['agt_ktp'];
+    $tombol = [
+        'tombol'=> '
+        
+        <button id="edit" data-id="' . $row['agt_id'] . '" class="btn btn-danger"
+          >Opt</button>
+      ',
+      'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'
+      
+      
+    ];
+    $data[] = $row + $tombol;
 }
 
 $output = [

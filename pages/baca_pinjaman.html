@@ -1,8 +1,10 @@
 <table class="table table-bordered">
-    <thead>
+    <thead class="text-uppercase">
         <th>#</th>
+        <th>tanggal </th>
         <th>kode_pj</th>
-        <th>kode_Anggota</th>
+        <th>nama</th>
+        <th>jumlah</th>
     </thead>
 
     <tbody id="nasabah">
@@ -10,17 +12,27 @@
     </tbody>
 </table>
 
-
 <script>
     $.ajax({
         type: "get",
-        url: url_folder_api+'/api/baca_pinjaman.php',
+        url: url_folder_api + '/api/baca_pinjaman.php',
         dataType: "HTML",
         success: function (response) {
-
-            $('#nasabah').html(response)
-             $('table').dataTable()
+            $('#nasabah').html(response);
+            $('table').dataTable({
+                responsive:true,
+                dom: "Blftrip",
+                buttons: [
+                    {
+                        extend: "print",
+                        text: "Cetak Langsung",
+                        className: "btn-success",
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4],
+                        },
+                    }
+                ]
+            });
         }
-        
     });
 </script>

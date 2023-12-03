@@ -1,0 +1,28 @@
+<table class="table table-bordered" style="width:100%">
+    <thead class="text-uppercase">
+        
+        <th>#</th>
+        <th>KODE NASABAH</th>
+        <th>NAMA NASABAH</th>
+        
+    </thead>
+
+    <tbody id="nasabah">
+        
+    </tbody>
+</table>
+
+
+<script>
+    $.ajax({
+        type: "GET",
+        url: url_folder_api+'/api/baca_agt.php',
+        dataType: "HTML",
+        success: function (response) {
+
+            $('#nasabah').html(response)
+             $('table').dataTable()
+        }
+        
+    });
+</script>
