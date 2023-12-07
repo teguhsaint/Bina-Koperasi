@@ -4,7 +4,7 @@ class Validation
     public $errors = [];
     public $result = [];
 
-    public function validate($rules, $db)
+    public function validate($rules)
     {
         if (array_key_exists('file', $rules)) {
             
@@ -28,6 +28,7 @@ class Validation
                         case 'required':
                             if (empty($isi)) {
                                 $this->errors[$key]['error'] = $key . ' tidak boleh kosong';
+                                break;
                             }
                             break;
                         case 'hs':
@@ -40,13 +41,17 @@ class Validation
                                 $this->errors[$key]['error'] = $key.' hanya boleh terdiri dari huruf, angka, spasi, koma, titik, dan tanda baca lainnya';
                                 
                             }
-                        
+                            break;
+                        case 'tanggal':
+                            if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $isi)) {
+                                $this->errors[$key]['error'] = $key."format tidak sesuai";
+                            }
                             break;
 
                     }
                 }
             }
-            $this->result[$key] = $db->real_escape_string(htmlspecialchars($isi));
+            $this->result[$key] = mysqli_real_escape_string($this->koneksi, htmlspecialchars($isi));
         }
       
         return empty($this->errors);
@@ -62,3 +67,19 @@ class Validation
         return $this->result;
     }
 }
+$db = new mysqli("localhost", "root", "", "db_koperasi");
+$test = new validation;
+
+$rules = [
+    "nama" => "required|hs"
+];
+
+$db_host = "localhost";
+$db_user = "root";
+$db_password = "";
+$db_name = "db_koperasi";
+
+$koneksi = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+
+$test->validate($rules, $koneksi);
+echo json_encode($test->getResult());

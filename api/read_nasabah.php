@@ -45,7 +45,7 @@ while ($row = $result->fetch_assoc()) {
         <button id="opt" data-id="' . $id. '" class="btn btn-danger"
           >Opt</button>
       ',
-      'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar">'
+      'image'=>'<img src="uploads/'.$ktp.'" alt="" id="gambar" style="td img {  border-radius:2px!important }">'
       
       
     ];
