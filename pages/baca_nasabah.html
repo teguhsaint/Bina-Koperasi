@@ -1,3 +1,4 @@
+
 <table
   class="table table-bordered table-hover"
   style="width: 100%;"
@@ -171,7 +172,6 @@
           data: "agt_alamat",
         },
       ],
-      lengthMenu: [5, 10, 15, 20],
       buttons: [
         {
           extend: "pdf",
@@ -197,6 +197,7 @@
         },
         "colvis",
       ],
+      lengthMenu: [ [10, 25, 50, 10000000000000], [10, 25, 50, "All"] ]
     });
 
     $(".modal-nasabah").on("click", "#hapus", function () {
