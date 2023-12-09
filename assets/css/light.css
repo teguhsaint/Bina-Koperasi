@@ -28799,3 +28799,13 @@ body[data-theme="colored"] .simplebar-scrollbar:before {
   top: 0;
   width: 264px;
 }
+ .navbar {
+    position: fixed!important;
+    width: 100%!important;
+        margin-left: 0px!important;
+    z-index: 99!important;
+    margin-bottom: 10px!important;
+    background: rgba( 255, 255, 255, 0.25 )!important;
+backdrop-filter: blur( 9px )!important;
+-webkit-backdrop-filter: blur( 9px )!important;
+}

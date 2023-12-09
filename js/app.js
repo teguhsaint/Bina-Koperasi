@@ -24057,7 +24057,9 @@
           e &&
             t &&
             t.addEventListener("click", function () {
+          
               e.classList.toggle("collapsed"),
+             
                 e.addEventListener("transitionend", function () {
                   window.dispatchEvent(new Event("resize"));
                 });
